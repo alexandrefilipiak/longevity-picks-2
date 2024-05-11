@@ -3,10 +3,20 @@ import { type Config } from "drizzle-kit";
 import { env } from "~/env";
 
 export default {
+  out: "./drizzle",
   schema: "./src/server/db/schema.ts",
-  driver: "pg",
+  dialect: "postgresql",
   dbCredentials: {
-    connectionString: env.DATABASE_URL,
+    url: env.DATABASE_URL,
   },
-  tablesFilter: ["longevity-picks-2_*"],
+  tablesFilter: ["lgvp_*"],
 } satisfies Config;
+/*
+export default {
+  out: "./drizzle",
+  dialect: "postgresql",
+  driver: "pg", // or 'node-pg'
+} satisfies Config;
+  driver: "pg",
+  
+*/
