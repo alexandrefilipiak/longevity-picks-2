@@ -3,10 +3,7 @@ import { db } from "./../server/db/index";
 export const dynamic = "force-dynamic";
 
 
-const mockImages = mockUrls.map((url, index)=> ({
-  id: index+1,
-  url,
-}));
+
 
 export default async function HomePage() {
   const products = await db.query.products.findMany({
