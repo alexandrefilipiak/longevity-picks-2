@@ -1,6 +1,10 @@
 import "~/styles/globals.css";
 
+import { ClerkProvider } from "@clerk/nextjs";
+
 import { Inter } from "next/font/google";
+
+import {TopNav} from "~/app/_components/topnav";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,18 +17,7 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-function TopNav() {
-  return (
-    <nav className="flex justify-between items-center p-4 bg-gray-800 text-white">
-      <div className="font-bold">Longevity Picks</div>
-      <div className="flex gap-4">
-        <a href="/">Sign in</a>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-      </div>
-    </nav>
-  );
-}
+
 
 export default function RootLayout({
   children,
@@ -32,11 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
-        <TopNav />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`font-sans ${inter.variable}`}>
+          <TopNav />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
