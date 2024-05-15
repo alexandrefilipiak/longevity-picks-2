@@ -18,7 +18,7 @@ export default async function HomePage() {
         {
           products.map((product)=> (
             <div key={product.id} className="flex w-48 flex-col">
-              <img src={product.image_url}/>
+              <img src={product.image_url ?? undefined}/>
               <div>{product.name}</div>
             </div>
           ))
