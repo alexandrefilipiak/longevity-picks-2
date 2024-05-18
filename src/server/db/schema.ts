@@ -39,6 +39,7 @@ export const products = createTable(
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 256 }).notNull(),
     image_url: varchar("image_url", { length: 256 }),
+    createdBy: varchar("created_by", { length: 256 }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),

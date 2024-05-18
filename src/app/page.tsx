@@ -1,5 +1,6 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { db } from "./../server/db/index";
+import { UploadButton } from "./utils/uploadthing";
 
 export const dynamic = "force-dynamic";
 
@@ -27,7 +28,7 @@ async function Products() {
 
 export default async function HomePage() {
   return (
-    <main className="">
+    <main className="flex flex-row">
       <SignedOut>
         <div className="h-full w-full text-2xl text-center">
           Please sign in above
