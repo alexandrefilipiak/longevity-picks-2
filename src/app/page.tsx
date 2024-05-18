@@ -4,7 +4,7 @@ import { db } from "./../server/db/index";
 export const dynamic = "force-dynamic";
 
 
-async function Images() {
+async function Products() {
   const products = await db.query.products.findMany({
     orderBy: (model, {desc}) => desc(model.id),
   });
@@ -34,7 +34,7 @@ export default async function HomePage() {
         </div>
       </SignedOut>
       <SignedIn>
-        <Images/>
+        <Products/>
       </SignedIn>
     </main>
     
