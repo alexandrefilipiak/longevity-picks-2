@@ -53,7 +53,9 @@ export default function Page() {
               name: 'Example Frontend Span',
               op: 'test'
             }, async () => {
-              const res = await fetch("/api/sentry-example-api");
+              const res = await fetch("/api/sentry-example-api").catch((err) => {
+                throw new Error("Sentry Example Frontend Error");
+              });
               if (!res.ok) {
                 throw new Error("Sentry Example Frontend Error");
               }
