@@ -59,10 +59,7 @@ export default function Page() {
                   throw new Error("Sentry Example Frontend Error");
                 }
               } catch (error) {
-                Sentry.captureException(error);
-                console.error(error);
-              } finally {
-                transaction.finish();
+                throw new Error("Sentry Example Frontend Error");
               }
             });
           }}
