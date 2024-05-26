@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { db } from "./../server/db/index";
 import { UploadButton } from "./utils/uploadthing";
@@ -45,18 +46,20 @@ async function MyProducts() {
     <div className="flex flex-wrap gap-4 justify-center">
           {
             products.map((product)=> (
-              <div key={product.id} className="flex h-48 w-48 flex-col">
-                {product.image_url ? (
-                <Image src={product.image_url} 
-                style={{objectFit: "contain"}}
-                width={192}
-                height={192}
-                alt={product.name}/>
-                ) : (
-                  <div>No image available</div>
-                )}
-                <div>{product.name}</div>
-              </div>
+              <Link href={`/products/${product.id}`}>
+                <div key={product.id} className="flex h-48 w-48 flex-col">
+                  {product.image_url ? (
+                  <Image src={product.image_url} 
+                  style={{objectFit: "contain"}}
+                  width={192}
+                  height={192}
+                  alt={product.name}/>
+                  ) : (
+                    <div>No image available</div>
+                  )}
+                  <div>{product.name}</div>
+                </div>
+              </Link>
             ))
           }
         </div>

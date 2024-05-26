@@ -2,6 +2,14 @@ import "server-only";
 import { db } from "./db";
 import { auth } from "@clerk/nextjs/server";
 
+export async function getProductById(productId: number) {
+    const product = await db.query.products.findFirst({
+        where: (model, {eq}) => eq(model.id,productId),
+    });
+    
+    return product;
+}
+
 export async function getProducts() {
     const products = await db.query.products.findMany({
         orderBy: (model, {desc}) => desc(model.id),
