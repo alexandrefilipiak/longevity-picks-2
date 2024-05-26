@@ -46,7 +46,7 @@ async function MyProducts() {
     <div className="flex flex-wrap gap-4 justify-center">
           {
             products.map((product)=> (
-              <Link href={`/products/${product.id}`}>
+              <Link href={`/products/${product.id}`} key={product.id}>
                 <div key={product.id} className="flex h-48 w-48 flex-col">
                   {product.image_url ? (
                   <Image src={product.image_url} 
