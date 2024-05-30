@@ -1,6 +1,7 @@
 import "~/styles/globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
+import { CSPostHogProvider } from './_analytics/provider';
 
 import { Inter } from "next/font/google";
 
@@ -31,21 +32,23 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={`font-sans ${inter.variable} dark`}>
-          <NextSSRPlugin
-            /**
-             * The `extractRouterConfig` will extract **only** the route configs
-             * from the router to prevent additional information from being
-             * leaked to the client. The data passed to the client is the same
-             * as if you were to fetch `/api/uploadthing` directly.
-             */
-            routerConfig={extractRouterConfig(ourFileRouter)}
-          />
-          <TopNav />
-          {children}
-        </body>
-      </html>
+      <CSPostHogProvider >
+        <html lang="en">
+          <body className={`font-sans ${inter.variable} dark`}>
+            <NextSSRPlugin
+              /**
+               * The `extractRouterConfig` will extract **only** the route configs
+               * from the router to prevent additional information from being
+               * leaked to the client. The data passed to the client is the same
+               * as if you were to fetch `/api/uploadthing` directly.
+               */
+              routerConfig={extractRouterConfig(ourFileRouter)}
+            />
+            <TopNav />
+            {children}
+          </body>
+        </html>
+      </CSPostHogProvider>
     </ClerkProvider>
   );
 }
