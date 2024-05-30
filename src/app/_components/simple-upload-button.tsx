@@ -76,8 +76,6 @@ export function SimpleUploadButton() {
   const router = useRouter();
   const posthog = usePostHog()
 
-  const posthog = usePostHog();
-
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin() {
       posthog.capture("upload_begin");
