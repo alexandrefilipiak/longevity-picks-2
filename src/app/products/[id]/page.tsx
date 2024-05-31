@@ -2,10 +2,11 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
+import { Button } from "../../../components/ui/button";
 
 //import ProductCard from "../../_components/product-card";
 
-import { getProductById } from "~/server/queries";
+import { deleteImage, getProductById } from "~/server/queries";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,7 @@ export default async function ProductDetail({
 }: {
   params: { id: string };
 }) {
+  const idAsNumber = Number(id);
   const product = await getProductById(+id);
 
   if (!product) {
@@ -35,6 +37,17 @@ export default async function ProductDetail({
         <h1 className="text-3xl font-bold leading-10 text-gray-100">
           {product.name}
         </h1>
+      </div>
+      <div>
+        <form
+        action={async () =>  {
+            "use server";
+
+            await deleteImage(idAsNumber);
+        }}
+        >
+        <Button type="submit" variant="destructive">Delete</Button>
+        </form>
       </div>
     </div>
   );
