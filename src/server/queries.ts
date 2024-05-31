@@ -4,6 +4,7 @@ import { and, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { products } from "./db/schema";
+import analyticsServerClient from "./analytics";
 
 export async function getProductById(productId: number) {
     const product = await db.query.products.findFirst({
@@ -38,6 +39,14 @@ export async function deleteImage(id: number) {
     if (!user.userId) throw new Error("Unauthorized");
 
     await db.delete(products).where(and(eq(products.id, id),eq(products.createdBy, user.userId)));
+
+    analyticsServerClient.capture({
+        distinctId: user.userId,
+        event: "delete image",
+        properties: {
+          imageId: id,
+        },
+      });
 
     redirect("/");
 }
