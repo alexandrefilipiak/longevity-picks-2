@@ -33,16 +33,31 @@ export const posts = createTable(
   })
 );
 
+export const files = createTable(
+  "file", 
+  {
+    id: serial("id").primaryKey(),
+    name: varchar("name", { length: 256 }).notNull(),
+    url: varchar("image_url", { length: 256 }),
+    createdBy: varchar("created_by", { length: 256 }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }),
+  },
+);
+
 export const products = createTable(
   "product", 
   {
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 256 }).notNull(),
-    image_url: varchar("image_url", { length: 256 }),
+    tldrDescription: varchar("tldr_description", { length: 256 }).notNull(),
+    imageUrl: varchar("image_url", { length: 256 }),
     createdBy: varchar("created_by", { length: 256 }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: timestamp("updatedAt", { withTimezone: true }),
+    updatedAt: timestamp("updated_at", { withTimezone: true }),
   },
 );

@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-import { products } from "../../../server/db/schema";
+import { files } from "../../../server/db/schema";
 import { db } from "../../../server/db/index";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
@@ -29,9 +29,9 @@ export const ourFileRouter = {
  
       console.log("file url", file.url);
 
-      await db.insert(products).values({
+      await db.insert(files).values({
         name: file.name,
-        image_url: file.url,
+        url: file.url,
         createdBy: metadata.userId,
       });
  

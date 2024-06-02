@@ -1,8 +1,5 @@
 import Link from "next/link";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { db } from "./../server/db/index";
-import { UploadButton } from "./utils/uploadthing";
-import { get } from "http";
 import { getMyProducts } from "~/server/queries";
 import { getProducts } from "~/server/queries";
 import Image from "next/image";
@@ -20,8 +17,8 @@ async function Products() {
           {
             products.map((product)=> (
               <div key={product.id} className="flex h-48 w-48 flex-col">
-                {product.image_url ? (
-                <Image src={product.image_url} 
+                {product.imageUrl ? (
+                <Image src={product.imageUrl} 
                 style={{objectFit: "contain"}}
                 width={192}
                 height={192}
@@ -48,8 +45,8 @@ async function MyProducts() {
             products.map((product)=> (
               <Link href={`/products/${product.id}`} key={product.id}>
                 <div key={product.id} className="flex h-48 w-48 flex-col">
-                  {product.image_url ? (
-                  <Image src={product.image_url} 
+                  {product.imageUrl ? (
+                  <Image src={product.imageUrl} 
                   style={{objectFit: "contain"}}
                   width={192}
                   height={192}

@@ -44,8 +44,8 @@ export const NewPickForm = ({ onDataAction, onFormAction }:
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
         defaultValues: {
-          title: "",
-          tldr_description: ""
+          name: "",
+          tldrDescription: ""
         },
       });
 
@@ -68,21 +68,21 @@ export const NewPickForm = ({ onDataAction, onFormAction }:
       >
           <FormField
             control={form.control}
-            name="title"
+            name="name"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Title</FormLabel>
+                <FormLabel>Name</FormLabel>
                 <FormControl>
                   <Input placeholder="" {...field} />
                 </FormControl>
-                <FormDescription>Title of your picked product.</FormDescription>
+                <FormDescription>Name of your picked product.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
           <FormField
             control={form.control}
-            name="tldr_description"
+            name="tldrDescription"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Short description</FormLabel>
