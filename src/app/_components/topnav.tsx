@@ -3,6 +3,8 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Sign } from "crypto";
 import { UploadButton } from "../utils/uploadthing";
+import Link from "next/link";
+import { Button } from "~/components/ui/button";
 import { useRouter } from "next/navigation";
 import { SimpleUploadButton } from "./simple-upload-button";
 
@@ -14,6 +16,10 @@ export function TopNav() {
         <div className="font-bold">Longevity Picks</div>
         
         <div className="flex flex-row items-center gap-4">
+          <Link href={`/new-pick`}>
+            <Button>Add a new pick</Button>
+          </Link>
+
           <SignedOut>
             <SignInButton />
           </SignedOut>
